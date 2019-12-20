@@ -16,28 +16,44 @@ export class FeedsComponent implements OnInit {
 
   feedTitle: string;
   feedItems: Array<FeedItem>;
-  private feedUrl: string = "http://feeds.feedburner.com/TechCrunch";
-  private category: string;
+  category: string = "";
 
   constructor(
     private feedService: FeedService,
     private route: ActivatedRoute,
     private router: Router
-    ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.route.se.queryParams.subscribe(params => {
-      this.category = params["category"];
-      if(this.category) {
+    this.route.paramMap.subscribe(x => {
+      this.category = x["params"].category;
+
+        if (this.category) {
         this.loadFeed(this.category)
       }
     });
+
+    this.route.params.subscribe(x => {
+      this.category = x.category;
+
+      if (this.category) {
+        this.loadFeed(this.category)
+      }
+    });
+
+    // this.route.queryParams.subscribe(params => {
+    //   this.category = params["category"];
+    //   if (this.category) {
+    //     this.loadFeed(this.category)
+    //   }
+    // });
   }
 
   private loadFeed(category: string) {
-    this.feedService.getFeedContent(this.feedUrl).subscribe( (f: FeedResponse) => {
-      this.feedTitle = f.title;
-      this.feedItems = f.items;
-    });
+    this.feedService.getFeedContent(category)
+      .subscribe((f: FeedResponse) => {
+        this.feedTitle = f.title;
+        this.feedItems = f.items;
+      });
   }
 }

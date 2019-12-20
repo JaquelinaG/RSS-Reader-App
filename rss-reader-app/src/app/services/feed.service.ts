@@ -8,10 +8,12 @@ import { FeedResponse } from '../models/feed-response';
 })
 export class FeedService {
 
+  private url = "/api/feeds";
+
   constructor(private http: HttpClient) { }
 
   getFeedContent(category: string) : Observable<FeedResponse>{
-    return this.http.get<FeedResponse>(`/api/feeds`, {
+    return this.http.get<FeedResponse>(`${this.url}`, {
       params: {
         category: category
       }
