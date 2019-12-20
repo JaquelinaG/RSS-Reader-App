@@ -8,12 +8,13 @@ import { FeedResponse } from '../models/feed-response';
 })
 export class FeedService {
 
-  //private url = "http://feeds.feedburner.com/TechCrunch";
-  private rssToJsonUrl = 'https://rss2json.com/api.json?rss_url=';
-
   constructor(private http: HttpClient) { }
 
-  getFeedContent(url: string) : Observable<FeedResponse>{
-    return this.http.get<FeedResponse>(`${this.rssToJsonUrl}${url}`);
+  getFeedContent(category: string) : Observable<FeedResponse>{
+    return this.http.get<FeedResponse>(`/api/feeds`, {
+      params: {
+        category: category
+      }
+    });
   }
 }

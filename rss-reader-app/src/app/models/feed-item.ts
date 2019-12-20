@@ -11,20 +11,29 @@ export class FeedItem {
         this.pubDate = new Date(json.pubDate) || null;
         this.link = json.link || "";
         this.guid = json.url || "";
-        this.author = json.author || "";
-        this.thumbnail = json.thumbnail || "";
-        this.description = json.description || "";
+        this.creator = json.creator || "";
         this.content = json.content || "";
+        this.contentSnippet = json.contentSnippet || "";
+        this.comments = json.comments || "";
+        this.isoDate = new Date(json.isoDate) || null;
+        
+        this.categories = new Array<string>();
+        if(json.categories) {
+            <Array<any>>json.categories.array.forEach(c => {
+                this.categories.push(c);
+            });
+        }
     }
     
     title: string;
     pubDate: Date;
     link: string;
     guid: string;
-    author: string;
-    thumbnail: string;
-    description: string;
+    creator: string;
     content: string;
+    contentSnippet: string;
     enclosure: string;
-    categories: Array<Category>;
+    categories: Array<string>;
+    comments: string;
+    isoDate: Date;
 }

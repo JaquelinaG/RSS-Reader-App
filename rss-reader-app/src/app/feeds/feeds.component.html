@@ -1,0 +1,11 @@
+<div class="container">
+    <p class="title">{{feedTitle}}</p>
+    <div class="grid-container">
+        <mat-grid-list cols="1">
+            <app-feed-card *ngFor="let item of feedItems" [feed]="item">
+            </app-feed-card>
+        </mat-grid-list>
+    </div>
+</div>
+
+

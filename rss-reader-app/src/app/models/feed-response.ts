@@ -8,8 +8,13 @@ export class FeedResponse {
             json = {};
         }
 
-        this.status = json.status || "";
-        this.feed = new Feed(json.feed);
+        this.title = json.title || "";
+        this.description = json.description || "";// new Feed(json.feed);
+        this.generator = json.generator || "";
+        this.link = json.link || "";
+        this.language = json.language || "";
+        this.lastBuildDate = new Date(json.lastBuildDate) || null;
+        
         this.items = new Array<FeedItem>();
 
         if(json.items) {
@@ -19,7 +24,14 @@ export class FeedResponse {
         }
     }
 
-    status: string;
-    feed: Feed;
+    title: string;
+    description: string;
+    generator: string;
+    link: string;
+    language: string;
+    lastBuildDate: Date;
+    // status: string;
+    // feed: Feed;
+    image: string;
     items: Array<FeedItem>;
 }

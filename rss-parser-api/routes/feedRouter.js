@@ -17,14 +17,16 @@ function routes() {
 
     feedRouter.route('/feeds')
         .get((req, res) => {
+            let category = "";
             let response = {};
             if (req.query.category) {
-                response = { hello: `It's category ${req.query.category}!` };
+                category = req.query.category;
+                //response = { hello: `It's category ${req.query.category}!` };
             } else {
-                response = { hello: "It's working!" };
+                //response = { hello: "It's working!" };
             }
 
-            let feed = parser.parseURL('http://feeds.feedburner.com/TechCrunch/europe', (err, feed) => {
+            let feed = parser.parseURL(`http://feeds.feedburner.com/TechCrunch/${category}`, (err, feed) => {
                 console.log("Pasoooo");
 
                 response = feed;
