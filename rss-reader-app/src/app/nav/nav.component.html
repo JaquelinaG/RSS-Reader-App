@@ -11,13 +11,13 @@
       </mat-list-item>
       <mat-divider></mat-divider>
       <a mat-list-item [routerLink]="['/feeds', category:startups]">Startups</a>
-      <a mat-list-item href="#">Fundings and Exits</a>
-      <a mat-list-item href="#">Social</a>
-      <a mat-list-item href="#">Mobile</a>
-      <a mat-list-item href="#">Gadgets</a>
-      <a mat-list-item href="#">Europe</a>
-      <a mat-list-item href="#">Enterprise/ TechCrunchIT</a>
-      <a mat-list-item href="#">GreenTech</a>
+      <a mat-list-item [routerLink]="['/feeds', fundings-exit']">Fundings and Exits</a>
+      <a mat-list-item routerLink="['/feeds/social']">Social</a>
+      <a mat-list-item [routerLink]="['/feeds/mobile']">Mobile</a>
+      <a mat-list-item [routerLink]="['/feeds/europe']">Gadgets</a>
+      <a mat-list-item [routerLink]="['/feeds/europe']">Europe</a>
+      <a mat-list-item [routerLink]="['/feeds/europe']">Enterprise/ TechCrunchIT</a>
+      <a mat-list-item [routerLink]="['/feeds/greentech']">GreenTech</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
