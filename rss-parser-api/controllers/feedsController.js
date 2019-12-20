@@ -1,60 +1,29 @@
-// import Parser from 'rss-parser';
+import Parser from 'rss-parser';
 
-// function feedsController(Feed) {
-//     function get(req, res){
-//         let parser = new Parser();
- 
-// // (async () => {
- 
-//    let feed = parser.parseURL('https://www.reddit.com/.rss');
-// //   console.log(feed.title);
- 
-// //   feed.items.forEach(item => {
-// //     console.log(item.title + ':' + item.link)
-// //   });
- 
-// // })();
+function feedsController() {
+    function get(req, res) {
+        let parser = new Parser();
+        let category = "";
+        let response = {};
 
-//     }
-// }
+        if (req.query.category) {
+            category = req.query.category;
 
-//ejemplo:
-// const FEED_LIST = [
-//   'https://css-tricks.com/feed/',
-//   'https://codepen.io/posts/feed',
-//   'https://blog.safia.rocks/rss',
-//   'https://hnrss.org/frontpage',
-//   'https://tj.ie/feed.rss',
-//   'http://github-trends.ryotarai.info/rss/github_trends_javascript_daily.rss'
-// ];
+            parser.parseURL(`http://feeds.feedburner.com/TechCrunch/${category}`, (err, feed) => {
+                if (err) {
+                    return res.send(err);
+                }
 
-// app
-//   .get('/', (req, res) => {
-//     let parser = new Parser();
+                response = feed;
+                return res.json(response);
+            });
+        } else {
+            res.status(400);
 
-//     const feedRequests = FEED_LIST.map(feed => {
-//       return parser.parseURL(feed);
-//     })
+            return res.send('Category is required');
+        }
+    }
+    return { get };
+}
 
-//     Promise.all(feedRequests).then(response => {
-//       res.setHeader('Access-Control-Allow-Origin', '*');
-//       // res.setHeader('Access-Control-Allow-Origin', 'some-domain-to-allow.com');
-//       res.header('Access-Control-Allow-Methods', 'GET');
-//       res.json(response);
-//     })
-//   })
-//   .listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-//doc rss-parse
-// let parser = new Parser();
- 
-// (async () => {
- 
-//   let feed = await parser.parseURL('https://www.reddit.com/.rss');
-//   console.log(feed.title);
- 
-//   feed.items.forEach(item => {
-//     console.log(item.title + ':' + item.link)
-//   });
- 
-// })();
+module.exports = feedsController;
