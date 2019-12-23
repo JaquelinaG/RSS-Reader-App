@@ -26,4 +26,4 @@ function feedsController() {
     return { get };
 }
 
-module.exports = feedsController;
+export default feedsController;
