@@ -1,8 +1,9 @@
-<div class="container">
-    <p class="title">{{feedTitle}}</p>
+<div *ngIf="!fullArticle" class="container">
+    <h1 class="title">{{feedTitle}}</h1>
     <div class="grid-container">
         <mat-grid-list cols="1">
-            <app-feed-card *ngFor="let item of feedItems" [feed]="item">
+            <app-feed-card *ngFor="let item of feedItems" [feed]="item" 
+            (navigate)="onNavigate($event)">
             </app-feed-card>
         </mat-grid-list>
     </div>
@@ -11,19 +12,7 @@
     <h2>Select a Category from Menu</h2>
 </div>
 
-<!-- <div tabindex="1">
-    <iframe *ngIf="sesion && sesion.urlRPe"
-            class="iframe-prescripcion-electronica"
-            [src]="uriRPe"
-            tabindex="1"
-            (load)="onTerminaCargar()">
-    </iframe>
-    <div *ngIf="cargando" class="cargando-aplicacion preparando-prescripcion" tabindex="1">
-        <div>
-            <i class="fa fa-circle-notch fa-spin fa-3x fa-fw"></i>
-            <span style="font-weight:bold">Preparando la prescripción electrónica...</span>
-        </div>
-    </div>
-</div> -->
-
-
+<div *ngIf="fullArticle">
+    <app-article [feed]="actualFeed">
+    </app-article>
+</div>

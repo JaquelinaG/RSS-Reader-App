@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FeedItem } from '../models/feed-item';
-import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,28 +10,21 @@ import { Router } from '@angular/router';
 export class FeedCardComponent implements OnInit {
 
   @Input() feed: FeedItem;
+  @Output() navigate: EventEmitter<any> = new EventEmitter();
 
-  // private uriDetail: SafeUrl = null;
-  // private sanitizer: DomSanitizer;
+  private _fullArticle: boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-
+    this._fullArticle = false;
   }
 
-  // get uriRPe(): SafeUrl {
-  //   return this.uriDetail;
-  // }
-
-  onNavigate(event: string) {
-    window.open(this.feed.link, "_blank");
-    //this.uriDetail = "";
-    //this.generateUriDetail();
-    //this.router.onNavigate()
+  get fullArticle (): boolean {
+    return this._fullArticle;
   }
 
-  // generateUriDetail(): void {
-  //   this.uriDetail = this.sanitizer.bypassSecurityTrustResourceUrl(this.uriDetail);
-  // }
+  onNavigate(event: any) {
+    this.navigate.emit(this.feed);
+  } 
 }

@@ -22,6 +22,8 @@ import { GridComponent } from './grid/grid.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {MatDividerModule} from '@angular/material/divider';
     FeedsComponent,
     FeedCardComponent,
     NavComponent,
-    GridComponent
+    GridComponent,
+    PageNotFoundComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatListModule,
     MatGridListModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

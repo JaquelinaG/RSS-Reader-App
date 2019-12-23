@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 
-import { Feed } from '../models/feed';
 import { FeedService } from '../services/feed.service';
 import { FeedItem } from '../models/feed-item';
 import { FeedResponse } from '../models/feed-response';
@@ -17,12 +15,17 @@ export class FeedsComponent implements OnInit {
   feedTitle: string;
   feedItems: Array<FeedItem>;
   category: string = "";
+  htmlSnippet: any;
+  actualFeed: any;
+  private _fullArticle: boolean;
 
   constructor(
     private feedService: FeedService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this._fullArticle = false;
+   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(x => {
@@ -33,6 +36,7 @@ export class FeedsComponent implements OnInit {
       }
     });
 
+    this._fullArticle = false;
     this.route.params.subscribe(x => {
       this.category = x.category;
 
@@ -40,13 +44,15 @@ export class FeedsComponent implements OnInit {
         this.loadFeed(this.category)
       }
     });
+  }
 
-    // this.route.queryParams.subscribe(params => {
-    //   this.category = params["category"];
-    //   if (this.category) {
-    //     this.loadFeed(this.category)
-    //   }
-    // });
+  get fullArticle(): boolean{
+    return this._fullArticle;
+  }
+
+  onNavigate(event: any): void{
+    this._fullArticle = true;
+    this.actualFeed = event;
   }
 
   private loadFeed(category: string) {

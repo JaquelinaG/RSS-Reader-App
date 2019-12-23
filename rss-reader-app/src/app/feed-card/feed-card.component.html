@@ -1,16 +1,15 @@
 <mat-card class="feed-card">
-    <mat-card-header>
-      <!-- <div mat-card-avatar class="feed-header-image"></div> -->
-      <mat-card-title class="mat-card-title">{{feed.title}}</mat-card-title>
-      <mat-card-subtitle class="mat-card-subtitle">{{feed.creator}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-content class="mat-card-content" style="padding-top: 1em;">
-      <p>{{feed.contentSnippet}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button type="button" class="mat-raised-button mat-button-base mat-primary"
-      (click)="onNavigate($event)" mat-button>Open article</button>
-    </mat-card-actions>
-    <mat-card-footer>{{feed.pubDate}}</mat-card-footer>
-  </mat-card>
+  <mat-card-header>
+    <mat-card-title class="mat-card-title">{{feed.title}}</mat-card-title>
+    <mat-card-subtitle class="mat-card-subtitle">{{feed.creator}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content class="mat-card-content" style="padding-top: 1em;">
+    <p>{{feed.contentSnippet}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button type="button" class="mat-raised-button mat-button-base mat-primary" (click)="onNavigate($event)"
+      mat-button>Open article</button>
+  </mat-card-actions>
+  <mat-card-footer class="mat-card-footer">{{feed.pubDate}}</mat-card-footer>
+</mat-card>

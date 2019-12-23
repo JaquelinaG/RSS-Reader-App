@@ -14,6 +14,7 @@ export class FeedItem {
         this.creator = json.creator || "";
         this.content = json.content || "";
         this.contentSnippet = json.contentSnippet || "";
+        this.contentencoded = json.contentencoded || null;
         this.comments = json.comments || "";
         this.isoDate = new Date(json.isoDate) || null;
         
@@ -22,7 +23,7 @@ export class FeedItem {
             <Array<any>>json.categories.array.forEach(c => {
                 this.categories.push(c);
             });
-        }
+        }        
     }
     
     title: string;
@@ -32,8 +33,9 @@ export class FeedItem {
     creator: string;
     content: string;
     contentSnippet: string;
+    contentencoded: any;
     enclosure: string;
     categories: Array<string>;
     comments: string;
-    isoDate: Date;
+    isoDate: Date;    
 }
