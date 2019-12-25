@@ -1,11 +1,11 @@
 .feed-card {
-    max-width: 900px;
+    max-width: 90%;
     align-content:center;
     margin-bottom: 1em;
     margin-left: 1em;
   }
   
-  .feed-header-image {
+  /* .feed-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
-  }
+  } */

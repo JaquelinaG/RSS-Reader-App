@@ -19,4 +19,11 @@ export class FeedService {
       }
     });
   }
+
+  getFeedGuid(url: string): string {
+    let param = url.split("p=");
+    let guid = param.splice(1, 1).shift();
+
+    return guid && guid.length > 0 ? guid : "";
+  }
 }

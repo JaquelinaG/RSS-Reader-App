@@ -1,4 +1,4 @@
-<mat-card class="feed-card">
+<mat-card *ngIf="feed" class="feed-card">
   <mat-card-header>
     <mat-card-title class="mat-card-title">{{feed.title}}</mat-card-title>
     <mat-card-subtitle class="mat-card-subtitle">{{feed.creator}}</mat-card-subtitle>
@@ -11,5 +11,5 @@
     <button type="button" class="mat-raised-button mat-button-base mat-primary" (click)="onNavigate($event)"
       mat-button>Open article</button>
   </mat-card-actions>
-  <mat-card-footer class="mat-card-footer">{{feed.pubDate}}</mat-card-footer>
+  <mat-card-footer class="mat-card-footer">{{feed.pubDate | date:'longDate'}}</mat-card-footer>
 </mat-card>

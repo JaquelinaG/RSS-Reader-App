@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FeedItem } from '../models/feed-item';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { FeedService } from '../services/feed.service';
 
 @Component({
   selector: 'app-feed-card',
@@ -12,19 +13,23 @@ export class FeedCardComponent implements OnInit {
   @Input() feed: FeedItem;
   @Output() navigate: EventEmitter<any> = new EventEmitter();
 
-  private _fullArticle: boolean = false;
-
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private service: FeedService) { }
 
   ngOnInit() {
-    this._fullArticle = false;
-  }
 
-  get fullArticle (): boolean {
-    return this._fullArticle;
   }
 
   onNavigate(event: any) {
-    this.navigate.emit(this.feed);
-  } 
+    this.route.params.subscribe(x => {
+      let category = x.category;
+      let guid = this.service.getFeedGuid(this.feed.guid);
+
+      const navExtras: NavigationExtras = { state: { feed: this.feed } };
+      this.router.navigate(['feeds/article', category, guid], navExtras);
+
+    });
+  }
 }

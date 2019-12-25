@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { FeedService } from '../services/feed.service';
 import { FeedItem } from '../models/feed-item';
@@ -12,54 +12,47 @@ import { FeedResponse } from '../models/feed-response';
 })
 export class FeedsComponent implements OnInit {
 
+  private _existFeeds: boolean;
+
   feedTitle: string;
   feedItems: Array<FeedItem>;
   category: string = "";
-  htmlSnippet: any;
   actualFeed: any;
-  private _fullArticle: boolean;
 
   constructor(
     private feedService: FeedService,
     private route: ActivatedRoute,
-    private router: Router
   ) {
-    this._fullArticle = false;
-   }
+    this._existFeeds = false;
+  }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(x => {
-      this.category = x["params"].category;
-
-        if (this.category) {
-        this.loadFeed(this.category)
-      }
-    });
-
-    this._fullArticle = false;
     this.route.params.subscribe(x => {
       this.category = x.category;
-
       if (this.category) {
-        this.loadFeed(this.category)
+        this.loadFeed(this.category);
       }
     });
   }
 
-  get fullArticle(): boolean{
-    return this._fullArticle;
+  get existFeeds(): boolean {
+    return this._existFeeds;
   }
 
-  onNavigate(event: any): void{
-    this._fullArticle = true;
+  onNavigate(event: any): void {
     this.actualFeed = event;
   }
 
   private loadFeed(category: string) {
     this.feedService.getFeedContent(category)
       .subscribe((f: FeedResponse) => {
-        this.feedTitle = f.title;
-        this.feedItems = f.items;
+        if (f && f.items && f.items.length > 0) {
+          this._existFeeds = true;
+          this.feedTitle = f.title;
+          this.feedItems = f.items;
+        } else {
+          this._existFeeds = false;
+        }
       });
   }
 }

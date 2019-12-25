@@ -1,18 +1,13 @@
-<div *ngIf="!fullArticle" class="container">
+<div *ngIf="existFeeds" class="container">
     <h1 class="title">{{feedTitle}}</h1>
     <div class="grid-container">
         <mat-grid-list cols="1">
-            <app-feed-card *ngFor="let item of feedItems" [feed]="item" 
-            (navigate)="onNavigate($event)">
+            <app-feed-card *ngFor="let item of feedItems" [feed]="item">
             </app-feed-card>
         </mat-grid-list>
     </div>
 </div>
-<div *ngIf="!category">
-    <h2>Select a Category from Menu</h2>
-</div>
 
-<div *ngIf="fullArticle">
-    <app-article [feed]="actualFeed">
-    </app-article>
+<div *ngIf="!existFeeds">
+    <h2>Select a Category from Menu</h2>
 </div>

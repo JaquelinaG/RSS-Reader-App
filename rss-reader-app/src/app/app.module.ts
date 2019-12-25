@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { GridComponent } from './grid/grid.component';
+//import { GridComponent } from './grid/grid.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
@@ -31,7 +31,7 @@ import { ArticleComponent } from './article/article.component';
     FeedsComponent,
     FeedCardComponent,
     NavComponent,
-    GridComponent,
+    //GridComponent,
     PageNotFoundComponent,
     ArticleComponent
   ],

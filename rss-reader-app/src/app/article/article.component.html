@@ -1,4 +1,4 @@
-<mat-card class="feed-card">
+<mat-card *ngIf="feed" class="feed-card">
     <mat-card-header>
       <mat-card-title class="mat-card-title">{{feed.title}}</mat-card-title>
       <mat-card-subtitle class="mat-card-subtitle">{{feed.creator}}</mat-card-subtitle>
@@ -7,5 +7,5 @@
     <mat-card-content class="mat-card-content" style="padding-top: 1em;">
       <p [innerHTML]="htmlSnippet"></p>
     </mat-card-content>
-    <mat-card-footer>{{feed.pubDate}}</mat-card-footer>
+    <mat-card-footer class="article-footer">{{feed.pubDate | date:'longDate'}}</mat-card-footer>
   </mat-card>

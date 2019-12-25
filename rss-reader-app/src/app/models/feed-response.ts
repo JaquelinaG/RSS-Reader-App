@@ -1,5 +1,4 @@
 import { FeedItem } from "./feed-item";
-import { Feed } from "./feed";
 
 export class FeedResponse {
 
